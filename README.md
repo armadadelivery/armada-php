@@ -1,8 +1,30 @@
 # armada/sdk (PHP)
 
+## Install
+
+From Packagist (once published):
+
 ```bash
 composer require armada/sdk
 ```
+
+Directly from the GitHub repo — no Packagist entry needed. Add this to
+your `composer.json`:
+
+```json
+{
+    "repositories": [
+        { "type": "vcs", "url": "https://github.com/armadadelivery/armada-php" }
+    ],
+    "require": {
+        "armada/sdk": "dev-main"
+    },
+    "minimum-stability": "dev"
+}
+```
+
+Then `composer install`. To pin to a release tag, replace `dev-main`
+with e.g. `^0.1.0-beta.0` and drop `minimum-stability`.
 
 ```php
 use Armada\SDK\ArmadaClient;
