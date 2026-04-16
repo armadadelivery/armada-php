@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.1', '8.2', '8.3']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+      - run: composer install --no-interaction --prefer-dist
+      - run: php -l src/ArmadaClient.php
+      - name: Autoload sanity
+        run: php -r "require 'vendor/autoload.php'; new Armada\SDK\ArmadaClient(['apiKey' => 'k', 'apiSecret' => 's']); echo 'ok';"

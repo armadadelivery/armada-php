@@ -1,0 +1,22 @@
+{
+  "name": "armada/sdk",
+  "description": "Official Armada Automated Ordering API v2 SDK for PHP.",
+  "type": "library",
+  "license": "proprietary",
+  "homepage": "https://github.com/armadadelivery/armada-php",
+  "support": {
+    "issues": "https://github.com/armadadelivery/armada-php/issues",
+    "source": "https://github.com/armadadelivery/armada-php"
+  },
+  "keywords": ["armada", "armada-delivery", "automated-ordering", "sdk"],
+  "require": {
+    "php": ">=8.1",
+    "guzzlehttp/guzzle": "^7.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "Armada\\SDK\\": "src/"
+    }
+  },
+  "minimum-stability": "dev"
+}
