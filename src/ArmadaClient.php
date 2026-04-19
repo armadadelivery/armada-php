@@ -32,7 +32,11 @@ class ArmadaClient
         if (empty($opts['apiSecret'])) throw new \InvalidArgumentException('apiSecret is required');
 
         $this->apiSecret = $opts['apiSecret'];
-        $base = $opts['baseUrl'] ?? 'https://sandbox.api.armadadelivery.com';
+        // Defaults to production. Use a Test-mode API key to simulate
+        // deliveries without dispatching a real driver. Pass
+        // https://sandbox.api.armadadelivery.com as $opts['baseUrl']
+        // explicitly only if you need the fully-isolated sandbox env.
+        $base = $opts['baseUrl'] ?? 'https://api.armadadelivery.com';
 
         $stack = HandlerStack::create();
         $stack->push(Middleware::mapRequest(function (RequestInterface $req) use ($opts) {
