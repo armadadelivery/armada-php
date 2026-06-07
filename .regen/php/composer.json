@@ -1,0 +1,38 @@
+{
+    "description": "The v2 API exposes the Armada delivery platform to merchant partners. Every request is authenticated with a merchant-scoped API key + secret using HMAC-SHA256 request signing. All endpoints are idempotent to retry when the response is a network error; duplicate keys de-dupe on `reference`.  ## Authentication  Send every request with three headers:  - `Authorization: Key <api_key_value>` - `x-armada-timestamp: <milliseconds since epoch>` - `x-armada-signature: <hex HMAC-SHA256>`  The signature is `HMAC_SHA256(secret, \"${timestamp}.${method}.${path}.${body}\")`. For `GET` requests the body is the empty string. The signature must arrive within 30 seconds of the timestamp.  ## Rate limits  Every response carries:  - `X-RateLimit-Limit` — the ceiling for this request's category - `X-RateLimit-Remaining` — how many calls remain in the current window - `X-RateLimit-Reset` — unix seconds when the window resets  On 429 the `Retry-After` header is set. Default ceilings: 300 reads / minute, 60 writes / minute, per API key.",
+    "keywords": [
+        "openapitools",
+        "openapi-generator",
+        "openapi",
+        "php",
+        "sdk",
+        "rest",
+        "api"
+    ],
+    "homepage": "https://openapi-generator.tech",
+    "license": "unlicense",
+    "authors": [
+        {
+            "name": "OpenAPI",
+            "homepage": "https://openapi-generator.tech"
+        }
+    ],
+    "require": {
+        "php": "^8.1",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/psr7": "^1.7 || ^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0 || ^9.0",
+        "friendsofphp/php-cs-fixer": "^3.5"
+    },
+    "autoload": {
+        "psr-4": { "Armada\\SDK\\Generated\\" : "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Armada\\SDK\\Generated\\Test\\" : "test/" }
+    }
+}
